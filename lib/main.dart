@@ -18,11 +18,14 @@ class TodoApp extends StatelessWidget {
         onPressed: () {
         Navigator.push (
             context,
-            MaterialPageRoute(builder: (context) => NextPage(),)
+            MaterialPageRoute(builder: (context) => NextPage('値を渡すよ'),)
           ),
         },
       ),
+    initialRoute: '/',
+    routes {
 
+    }
 
     )
   };
