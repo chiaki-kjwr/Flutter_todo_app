@@ -1,16 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:mytodoapp/main_model.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(TodoApp());
 
-class TodoApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String kboyText = 'kboyじゃないよ';
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.white,
+      title: 'Flutter Demo',
+      home: ChangeNotifierProvider<MainModel>(
+        create: (_) => MainModel(),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('コリアンダー'),
+          ),
+          body: Consumer<MainModel>(builder: (context, model, child) {
+            return Center(
+              child: Column(
+                children: [
+                  Text(
+                    model.kboyText,
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text('ボタン'),
+                    onPressed: () {
+                      // ここでなにか
+                      model.changeKboyText();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
       ),
-      home: Scaffold(),
     );
   }
 }
