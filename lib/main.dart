@@ -17,13 +17,14 @@ class MyApp extends StatelessWidget {
           ),
           body: Consumer<MainModel>(builder: (context, model, child) {
             return Center(
+
               child: Column(
                 children: [
                   Text(
                     model.kboyText,
                     style: TextStyle(
                       fontSize: 30,
-                    ),
+                    ),i
                   ),
                   RaisedButton(
                     child: Text('ボタン'),
