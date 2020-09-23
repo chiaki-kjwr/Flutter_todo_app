@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:mytodoapp/main.dart';
 
-void main() => runApp(CookApp());
-
-//アプリのトップページのWidget
-class CookApp extends StatelessWidget {
-  //CookAppのメソッドを定義
+class AddRecipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +13,7 @@ class CookApp extends StatelessWidget {
       home: Scaffold(
         //scaffoldの中でappBarを使用
         appBar: AppBar(
-          title: Text('レシピ一覧', textAlign: TextAlign.center),
+          title: Text('レシピ一覧'),
           leading: Icon(Icons.add_alert),
         ),
         body: Center(
