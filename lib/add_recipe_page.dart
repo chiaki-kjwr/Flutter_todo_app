@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AddRecipe extends StatelessWidget {
+//main関数は必ず記載する
+void main() => runApp(AddRecipePage());
+
+class AddRecipePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,8 +14,13 @@ class AddRecipe extends StatelessWidget {
           leading: Icon(Icons.add_alert),
         ),
         body: Center(
-          child: RaisedButton(
-            child: Text('レシピを追加！！！'),
+          child: Column(
+            children: <Widget>[
+              FloatingActionButton(
+                child: Text('レシピを追加！！！'),
+              ),
+              TextField(),
+            ],
           ),
         ),
       ),

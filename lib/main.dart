@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'add_recipe.dart';
+import 'package:mytodoapp/add_recipe_page.dart';
 
 void main() => runApp(CookApp());
 
@@ -9,6 +8,12 @@ class CookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //画面遷移のルーティングを設定
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => CookApp(),
+        '/addrecipepage': (BuildContext context) => AddRecipePage(),
+      },
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.lightBlue[800],
@@ -17,32 +22,35 @@ class CookApp extends StatelessWidget {
       home: Scaffold(
         //scaffoldの中でappBarを使用
         appBar: AppBar(
-          title: Text('レシピ一覧', textAlign: TextAlign.center),
+          title: Text('レシピ一覧', textAlign: TextAlign.right),
           leading: Icon(Icons.add_alert),
         ),
-        body: Center(
-          child: RaisedButton(
-            child: Text(
-              'レシピを追加しよう',
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
+        body: ListView(
+          children: <Widget>[
+            Text('生姜焼き'),
+            Text('ゴーヤチャンプルー'),
+            Text('わかめスープ'),
+            Text('なすとベーコンのチーズ焼き'),
+            TextField(),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Text(
+            'レシピを追加しよう',
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onPressed: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                settings: RouteSettings(name: "/"),
+                builder: (BuildContext context) => AddRecipePage(),
               ),
             ),
-            // onPressed: () {
-            //   //レシピ追加画面へ遷移
-
-            //   // Navigator.of(context).pushReplacement(MaterialPageRoute(
-            //   //   builder: (context) {
-            //   //     return AddRecipe();
-            //   //   },
-            //   // ));
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => AddRecipe()),
-            //   );
-            // },
-          ),
+          },
         ),
       ),
     );
