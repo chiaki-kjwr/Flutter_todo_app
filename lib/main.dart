@@ -4,53 +4,58 @@ import 'package:mytodoapp/add_recipe_page.dart';
 void main() => runApp(CookApp());
 
 //アプリのトップページのWidget
+
+//テキスト入力フォームで入力された値を表示する
 class CookApp extends StatelessWidget {
+  //var titleText = 'レシピ一覧';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //画面遷移のルーティングを設定
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => CookApp(),
-        '/addrecipepage': (BuildContext context) => AddRecipePage(),
-      },
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
-        accentColor: Colors.cyan[600],
+      //下記のHomeクラスを呼び出している
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  final String titleText = 'レシピ一覧です';
+
+  //constは何のために記載するの？
+  //const Home({this.titleText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.menu),
+        title: Text(titleText),
       ),
-      home: Scaffold(
-        //scaffoldの中でappBarを使用
-        appBar: AppBar(
-          title: Text('レシピ一覧', textAlign: TextAlign.right),
-          leading: Icon(Icons.add_alert),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Text('生姜焼き'),
-            Text('ゴーヤチャンプルー'),
-            Text('わかめスープ'),
-            Text('なすとベーコンのチーズ焼き'),
-            TextField(),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Text(
-            'レシピを追加しよう',
-            style: TextStyle(
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
+      body: ConstrainedBox(
+        //画面全体に表示
+        constraints: BoxConstraints.expand(),
+        child: Container(
+          constraints: BoxConstraints.expand(),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('レシピを追加する'),
+                  color: Colors.orange,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddRecipe(),
+                          //モーダルで表示
+                          fullscreenDialog: true),
+                    );
+                  },
+                ),
+              ],
             ),
           ),
-          onPressed: () => {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                settings: RouteSettings(name: "/"),
-                builder: (BuildContext context) => AddRecipePage(),
-              ),
-            ),
-          },
         ),
       ),
     );
