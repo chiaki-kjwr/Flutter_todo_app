@@ -8,7 +8,7 @@ class AddRecipe extends StatelessWidget {
     final _recipecostFocusNode = FocusNode();
 
     //①フォームの値を取得するためにEditingControllerを定義
-    final _myController = TextEditingController();
+    final myController = TextEditingController();
 
     //String _recipe;
 
@@ -26,7 +26,7 @@ class AddRecipe extends StatelessWidget {
               children: <Widget>[
                 TextFormField(
                   //②定義したmyControllerに、フォームからきた値を格納
-                  controller: _myController,
+                  controller: myController,
                   decoration: InputDecoration(
                     labelText: '料理名',
                     hintText: '豚の生姜焼き',
@@ -40,7 +40,8 @@ class AddRecipe extends StatelessWidget {
                   // },
                 ),
                 TextFormField(
-                  controller: _myController,
+                  //ここにcontrollerを記載してしまうと上の値が格納されてしまう！！！
+                  //controller: myController,
                   //keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: '食材費',
@@ -60,15 +61,17 @@ class AddRecipe extends StatelessWidget {
                   onPressed: () {
                     //print(_myController),
                     //テキストフォームで入力された値をダイアログに表示
-                    Text(_myController),
-                    // showDialog(
-                    //   context: context,
-                    //   builder: (context) {
-                    //     return AlertDialog(
-                    //       content: Text(_myController.text),
-                    //     );
-                    //   },
-                    // );
+
+                    return showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          //myController.textにしないと、text形式で値が表示されない！！！
+                          content: Text(myController.text),
+                          //content: Text('${myController}です')
+                        );
+                      },
+                    );
                   },
                   child: Text('レシピを登録する'),
                 ),
