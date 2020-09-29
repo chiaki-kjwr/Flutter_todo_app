@@ -19,9 +19,12 @@ class CookApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+  //titleText変数を後に使うので定義。
+  //定義しないとnot defiendのエラーになる
   final String titleText = 'レシピ一覧です';
 
-  //constは何のために記載するの？
+  //constは何のために記載するの？→
+  //コンストラクタの引数部分に、thisを付けてメンバ変数を書くことで、その変数を初期化している
   //const Home({this.titleText});
 
   @override

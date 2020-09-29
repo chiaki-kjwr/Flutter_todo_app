@@ -17,6 +17,8 @@ dependencies:
   provider: ^4.3.2+2
 
 dev_dependencies:
+  # リンターツールを導入
+  pedantic_mono: any
   flutter_test:
     sdk: flutter
 
