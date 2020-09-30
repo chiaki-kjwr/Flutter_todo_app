@@ -10,7 +10,11 @@ class AddRecipe extends StatelessWidget {
     //①フォームの値を取得するためにEditingControllerを定義
     final myController = TextEditingController();
 
+    //onChangedでフォームのデータを入手する場合
     //String _recipe;
+
+    //非同期通信で、外部からデータを取得
+    //Future()
 
     return Scaffold(
       //scaffoldの中でappBarを使用
@@ -61,7 +65,6 @@ class AddRecipe extends StatelessWidget {
                   onPressed: () {
                     //print(_myController),
                     //テキストフォームで入力された値をダイアログに表示
-
                     return showDialog(
                       context: context,
                       builder: (context) {
@@ -69,6 +72,7 @@ class AddRecipe extends StatelessWidget {
                           //myController.textにしないと、text形式で値が表示されない！！！
                           content: Text(myController.text),
                           //content: Text('${myController}です')
+                          //showDialog表示後戻せたらベスト
                         );
                       },
                     );
@@ -77,7 +81,7 @@ class AddRecipe extends StatelessWidget {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.of(context).pop(myController);
                   },
                   child: Text('戻る'),
                 ),
